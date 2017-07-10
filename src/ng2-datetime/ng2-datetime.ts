@@ -232,20 +232,8 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
 
         // update timepicker
         if (this.timepicker !== undefined && isDate(date)) {
-            let hours = date.getHours();
-            if (this.timepickerOptions.showMeridian) {
-                // Convert 24 to 12 hour system
-                hours = (hours === 0 || hours === 12) ? 12 : hours % 12;
-            }
-            const meridian = date.getHours() >= 12 ? ' PM' : ' AM';
-            const time =
-                this.pad(hours) + ':' +
-                this.pad(this.date.getMinutes()) + ':' +
-                this.pad(this.date.getSeconds()) +
-                (this.timepickerOptions.showMeridian || this.timepickerOptions.showMeridian === undefined
-                    ? meridian : '');
-            this.timepicker.timepicker('setTime', time);
-            this.timeModel = time; // fix initial empty timeModel bug
+            this.timepicker.timepicker('setTime', date);
+            this.timeModel = this.timepicker.timepicker('getTime'); // fix initial empty timeModel bug
         }
     }
 
