@@ -233,7 +233,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
         // update timepicker
         if (this.timepicker !== undefined && isDate(date)) {
             this.timepicker.timepicker('setTime', date);
-            this.timeModel = this.timepicker.timepicker('getTime'); // fix initial empty timeModel bug
+            this.timeModel = this.timepicker.data('timepicker').getTime(); // fix initial empty timeModel bug
         }
     }
 
